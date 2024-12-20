@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 public class Formateur extends Personne {
     static ArrayList<Formateur> formateur = new ArrayList<>();
-    private String Spesialite;
-    private double Salaire;
-    private Class classe;
+
+
+
     public static void GestionFormateurs() {
 
         Scanner scan = new Scanner(System.in);
@@ -30,12 +30,15 @@ public class Formateur extends Personne {
                 case 4:
                     break;
                 case 5:
-                    AfficherFormateur();
+                    AfficherFormateurs();
                     break;
             }
         } while (choix != 4);
     }
 
+    private String Spesialite;
+    private double Salaire;
+    private String classe;
 
     public static void AjouterFormateur() {
         Scanner scan = new Scanner(System.in);
@@ -45,60 +48,61 @@ public class Formateur extends Personne {
         String prénom = scan.next();
         System.out.println("Entrer l'Email:");
         String email = scan.next();
-        System.out.println("Entrer la Spesialite");
-        String spesialite = scan.next();
-        System.out.println("Entrer la Salaire");
-        double salaire = scan.next();
-        System.out.println("Entrer le Classe");
-        Class classe = scan.next();
-        formateur.add(new Formateur(nom, prénom, email, spesialite, salaire, classe));
+        System.out.println("Entrer la Spécialité:");
+        String specialite = scan.next();
+        System.out.println("Entrer le Salaire:");
+        double salaire = scan.nextDouble();
+        System.out.println("Entrer la Classe:");
+        String classe = scan.next();
+        formateur.add(new Formateur(nom, prénom, email, specialite, salaire, classe));
     }
-    public static void AfficherFormateur() {
-        for (Formateur a : formateur) {
-            System.out.println(a.toString());
+    public static void AfficherFormateurs() {
+        if (formateur.isEmpty()) {
+            System.out.println("Aucun formateur enregistré.");
+        } else {
+            for (Formateur formateur : formateur) {
+                System.out.println("Nom: " + formateur.getNom() + ", Prénom: " + formateur.getPrénom() +
+                        ", Email: " + formateur.getEmail() + ", Spécialité: " + formateur.getSpesialite() +
+                        ", Salaire: " + formateur.getSalaire() + ", Classe: " + formateur.getClasse());
+            }
         }
     }
 
-    public Formateur(String nom, String prénom, String email, String spesialite, double salaire, Class classe) {
-            super(nom, prénom, email);
-            Spesialite = spesialite;
-            Salaire = salaire;
-            this.classe = classe;
+
+    public Formateur(String nom, String prénom, String email, String specialite, double salaire, String classe){
+                super(nom, prénom, email);
+                this.Spesialite = specialite;
+                this.Salaire = salaire;
+                this.classe = classe;
+            }
+
+
+            public String getSpesialite () {
+                return Spesialite;
+            }
+
+            public void setSpesialite (String spesialite){
+                Spesialite = spesialite;
+            }
+
+            public double getSalaire () {
+                return Salaire;
+            }
+
+            public void setSalaire ( double salaire){
+                Salaire = salaire;
+            }
+
+            public String getClasse () {
+                return classe;
+            }
+
+            public void setClasse (String classe){
+                this.classe = classe;
+            }
+
 
         }
-
-        public String getSpesialite () {
-            return Spesialite;
-        }
-
-        public void setSpesialite (String spesialite){
-            Spesialite = spesialite;
-        }
-
-        public double getSalaire () {
-            return Salaire;
-        }
-
-        public void setSalaire ( double salaire){
-            Salaire = salaire;
-        }
-
-        public Class getClasse () {
-            return classe;
-        }
-
-        public void setClasse (Class classe){
-            this.classe = classe;
-        }
-    @Override
-    public String toString() {
-        return  " Formateur " + super.toString() +
-                " Spesialite = " + Spesialite +
-                " classe = " + classe +
-                " Salaire = " + Salaire;
-
-    }
-    }
 
 
 

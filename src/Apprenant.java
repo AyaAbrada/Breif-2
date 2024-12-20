@@ -31,7 +31,7 @@ public class Apprenant extends Personne{
                     AjouterApprenant();
                     break;
                 case 2:
-                    AssiciationUnApprenant();
+                    AssociationUnApprenant();
                     break;
                 case 3:
                     ModifierUnApprenant();
@@ -56,7 +56,7 @@ public class Apprenant extends Personne{
         String email = scan.next();
         apprenants.add(new Apprenant(nom,prénom,email));
     }
-    public static void AssiciationUnApprenant(){
+    public static void AssociationUnApprenant(){
 
     }
 

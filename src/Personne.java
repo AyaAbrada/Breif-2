@@ -50,7 +50,7 @@ public  abstract class Personne {
     @Override
     public String toString() {
         return
-                "ID=" + ID +
+                " ID=" + ID +
                 ", Nom='" + Nom + '\'' +
                 ", Prénom='" + Prénom + '\'' +
                 ", Email='" + Email + '\'';
