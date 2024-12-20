@@ -1,19 +1,19 @@
+import java.util.Scanner;
+
 public  abstract class Personne {
+    private static int compteur=1;
     private int ID;
     private String Nom;
     private String Prénom;
     private String Email;
 
-    public Personne(int ID, String nom, String prénom, String email) {
-        this.ID = ID;
+    public Personne( String nom, String prénom, String email) {
+        this.ID = compteur;
         Nom = nom;
         Prénom = prénom;
         Email = email;
+        compteur++;
     }
-
-    public Personne() {
-    }
-
 
     public int getID() {
         return ID;
@@ -46,4 +46,15 @@ public  abstract class Personne {
     public void setEmail(String email) {
         Email = email;
     }
+
+    @Override
+    public String toString() {
+        return
+                "ID=" + ID +
+                ", Nom='" + Nom + '\'' +
+                ", Prénom='" + Prénom + '\'' +
+                ", Email='" + Email + '\'';
+    }
+
+    public Personne(){}
 }
