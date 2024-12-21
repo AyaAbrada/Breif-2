@@ -4,8 +4,6 @@ import java.util.Scanner;
 public class Formateur extends Personne {
     static ArrayList<Formateur> formateur = new ArrayList<>();
 
-
-
     public static void GestionFormateurs() {
 
         Scanner scan = new Scanner(System.in);
@@ -67,9 +65,9 @@ public class Formateur extends Personne {
         Scanner scan = new Scanner(System.in);
         System.out.print("Entrez l'ID du formateur à modifier: ");
         int id = scan.nextInt();
-        Formateur formateur = TrouverFormateurParId(id);  // Recherche du formateur par ID
+        Formateur formateur = TrouverFormateurParId(id);
         if (formateur != null) {
-            // Modification des informations du formateur
+
             System.out.println("Nom actuel: " + formateur.getNom());
             System.out.print("Nouveau Nom: ");
             formateur.setNom(scan.next());

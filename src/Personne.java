@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public  abstract class Personne {
     private static int compteur=1;
