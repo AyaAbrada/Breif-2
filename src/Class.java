@@ -18,7 +18,7 @@ public class Class extends Personne {
             choix = scan.nextInt();
             switch (choix) {
                 case 1:
-                    creationClasse();
+                    créerClasse();
                     break;
                 case 2:
                     modificationClasse();
@@ -34,7 +34,7 @@ public class Class extends Personne {
     }
 
 
-    private static void creationClasse() {
+    private static void créerClasse() {
         Scanner scan = new Scanner(System.in);
 
 
@@ -52,8 +52,27 @@ public class Class extends Personne {
         Classe classe = new Classe(nomClasse, formateur);
         classes.add(classe);
     }
-
-
+    private static void modificationClasse() {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Nom de la classe à modifier: ");
+        String nomClasse = scan.nextLine();
+        Classe classe = trouverClasse(nomClasse);
+        if (classe != null) {
+            System.out.print("Nouveau nom de la classe: ");
+            classe.nomClasse = scan.nextLine();
+            System.out.println("Classe modifiée : " + classe.getNomClasse());
+        } else {
+            System.out.println("Classe non trouvée.");
+        }
+    }
+    private static Classe trouverClasse(String nomClasse) {
+        for (Classe classe : classes) {
+            if (classe.getNomClasse().equals(nomClasse)) {
+                return classe;
+            }
+        }
+        return null;
+}
 
     public static class Formateur extends Personne {
         private String nom;
