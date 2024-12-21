@@ -47,14 +47,6 @@ public  abstract class Personne {
         Email = email;
     }
 
-    @Override
-    public String toString() {
-        return
-                " ID=" + ID +
-                ", Nom='" + Nom + '\'' +
-                ", Prénom='" + Prénom + '\'' +
-                ", Email='" + Email + '\'';
-    }
 
     public Personne(){}
 }

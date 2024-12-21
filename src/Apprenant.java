@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Apprenant extends Personne{
     static ArrayList<Apprenant> apprenants = new ArrayList<>();
 
-    public Apprenant(String nom, String prénom, String email) {
+    public Apprenant(String nom, String prénom, String email){
         super(nom, prénom, email);
 
     }
@@ -40,7 +40,7 @@ public class Apprenant extends Personne{
                     SuppresionDunApprenant();
                     break;
                 case 5 :
-                    AfficherApprenat();
+                    AfficherApprenant();
                     break;
             }
         }while (choix != 5);
@@ -60,27 +60,72 @@ public class Apprenant extends Personne{
 
     }
 
-    public static void ModifierUnApprenant(){
+    public static void ModifierUnApprenant() {
+            Scanner scan = new Scanner(System.in);
+            System.out.print("Entrez l'ID de l'apprenant à modifier: ");
+            int id = scan.nextInt();
+            Apprenant apprenant = TrouverApprenantParId(id);
+            if (apprenant != null) {
+                System.out.println("Modifiez les informations de l'apprenant:");
+                System.out.println("Nom actuel: " + apprenant.getNom());
+                System.out.print("Nouveau Nom: ");
+                apprenant.setNom(scan.next());
+
+                System.out.println("Prénom actuel: " + apprenant.getPrénom());
+                System.out.print("Nouveau Prénom: ");
+                apprenant.setPrénom(scan.next());
+
+                System.out.println("Email actuel: " + apprenant.getEmail());
+                System.out.print("Nouvel Email: ");
+                apprenant.setEmail(scan.next());
+
+            } else {
+                System.out.println("Aucun apprenant trouvé avec cet ID.");
+            }
+
 
     }
-    public static void SuppresionDunApprenant(){
 
-    }
-    public static void AfficherApprenat(){
-        for(Apprenant a : apprenants){
-            System.out.println(a.toString());
+    public static void SuppresionDunApprenant() {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Entrez l'ID de l'apprenant à supprimer: ");
+        int id = scan.nextInt();
+        Apprenant apprenant = TrouverApprenantParId(id);
+        if (apprenant != null) {
+            apprenants.remove(apprenant);
+            System.out.println("Apprenant supprimé");
+        } else {
+            System.out.println("Aucun apprenant trouvé avec cet ID.");
         }
+    }
 
-
+    public static void AfficherApprenant() {
+        if (apprenants.isEmpty()) {
+            System.out.println("Aucun aprenant enregistré.");
+        } else {
+            for (Apprenant apprenant : apprenants) {
+                System.out.println("Nom: " + apprenant.getNom() + ", Prénom: " + apprenant.getPrénom() +
+                        ", Email: " + apprenant.getEmail() + ", Classe: " + apprenant.getClasse() + ", ID: " + apprenant.getID());
+            }
+        }
     }
 
     private Class classe;
+
     public Apprenant( String nom, String prénom, String email,Class classe) {
         super( nom, prénom, email);
         this.classe=classe;
     }
 
     public Apprenant() {
+    }
+    private static Apprenant TrouverApprenantParId(int id) {
+        for (Apprenant apprenant : apprenants) {
+            if (apprenant.getID() == id) {
+                return apprenant;
+            }
+        }
+        return null;
     }
 
     public Class getClasse() {
@@ -102,11 +147,5 @@ public class Apprenant extends Personne{
         Note = note;
     }
 
-    @Override
-    public String toString() {
-        return  " Apprenant " + super.toString() +
-                " classe = " + classe +
-                " Note = " + Note;
-    }
 }
 

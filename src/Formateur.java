@@ -24,10 +24,13 @@ public class Formateur extends Personne {
                     AjouterFormateur();
                     break;
                 case 2:
+                    AssociationFormateur();
                     break;
                 case 3:
+                    ModifierFormateur();
                     break;
                 case 4:
+                    SupprimerFormateur();
                     break;
                 case 5:
                     AfficherFormateurs();
@@ -36,7 +39,7 @@ public class Formateur extends Personne {
         } while (choix != 4);
     }
 
-    private String Spesialite;
+    private String Specialite;
     private double Salaire;
     private String classe;
 
@@ -56,33 +59,81 @@ public class Formateur extends Personne {
         String classe = scan.next();
         formateur.add(new Formateur(nom, prénom, email, specialite, salaire, classe));
     }
+
+    public static void AssociationFormateur() {
+
+    }
+    public static void ModifierFormateur() {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Entrez l'ID du formateur à modifier: ");
+        int id = scan.nextInt();
+        Formateur formateur = TrouverFormateurParId(id);  // Recherche du formateur par ID
+        if (formateur != null) {
+            // Modification des informations du formateur
+            System.out.println("Nom actuel: " + formateur.getNom());
+            System.out.print("Nouveau Nom: ");
+            formateur.setNom(scan.next());
+
+            System.out.println("Prénom actuel: " + formateur.getPrénom());
+            System.out.print("Nouveau Prénom: ");
+            formateur.setPrénom(scan.next());
+
+            System.out.println("Email actuel: " + formateur.getEmail());
+            System.out.print("Nouvel Email: ");
+            formateur.setEmail(scan.next());
+
+            System.out.println("Spécialité actuelle: " + formateur.getSpecialite());
+            System.out.print("Nouvelle Spécialité: ");
+            formateur.setSpecialite(scan.next());
+
+            System.out.println("Salaire actuel: " + formateur.getSalaire());
+            System.out.print("Nouveau Salaire: ");
+            formateur.setSalaire(scan.nextDouble());
+
+            System.out.println("Classe actuelle: " + formateur.getClasse());
+            System.out.print("Nouvelle Classe: ");
+            formateur.setClasse(scan.next());
+        } else {
+            System.out.println("Aucun formateur trouvé avec cet ID.");
+        }
+    }
+    public static void SupprimerFormateur() {
+
+    }
     public static void AfficherFormateurs() {
         if (formateur.isEmpty()) {
             System.out.println("Aucun formateur enregistré.");
         } else {
             for (Formateur formateur : formateur) {
                 System.out.println("Nom: " + formateur.getNom() + ", Prénom: " + formateur.getPrénom() +
-                        ", Email: " + formateur.getEmail() + ", Spécialité: " + formateur.getSpesialite() +
-                        ", Salaire: " + formateur.getSalaire() + ", Classe: " + formateur.getClasse());
+                        ", Email: " + formateur.getEmail() + ", Spécialité: " + formateur.getSpecialite() +
+                        ", Salaire: " + formateur.getSalaire() + ", Classe: " + formateur.getClasse() + ", ID: " + formateur.getID());
             }
         }
     }
 
-
     public Formateur(String nom, String prénom, String email, String specialite, double salaire, String classe){
                 super(nom, prénom, email);
-                this.Spesialite = specialite;
+                this.Specialite = specialite;
                 this.Salaire = salaire;
                 this.classe = classe;
             }
+    private static Formateur TrouverFormateurParId(int id) {
+        for (Formateur formateur : formateur) {
+            if (formateur.getID() == id) {
+                return formateur;
+            }
+        }
+        return null;
+    }
 
 
-            public String getSpesialite () {
-                return Spesialite;
+            public String getSpecialite () {
+                return Specialite;
             }
 
-            public void setSpesialite (String spesialite){
-                Spesialite = spesialite;
+            public void setSpecialite (String specialite){
+                Specialite = specialite;
             }
 
             public double getSalaire () {
