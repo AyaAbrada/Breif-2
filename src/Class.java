@@ -21,13 +21,13 @@ public class Class extends Personne {
                     créerClasse();
                     break;
                 case 2:
-                    modificationClasse();
+                    modifierClasse();
                     break;
                 case 3:
-                    suppressionClasse();
+                    supprimerClasse();
                     break;
                 case 4:
-                    affichageClasses();
+                    afficherClasses();
                     break;
             }
         } while (choix != 4);
@@ -52,7 +52,7 @@ public class Class extends Personne {
         Classe classe = new Classe(nomClasse, formateur);
         classes.add(classe);
     }
-    private static void modificationClasse() {
+    private static void modifierClasse() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Nom de la classe à modifier: ");
         String nomClasse = scan.nextLine();
@@ -65,6 +65,28 @@ public class Class extends Personne {
             System.out.println("Classe non trouvée.");
         }
     }
+
+
+    private static void supprimerClasse() {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Nom de la classe à supprimer: ");
+        String nomClasse = scan.nextLine();
+        Classe classe = trouverClasse(nomClasse);
+        if (classe != null) {
+            classes.remove(classe);
+            System.out.println("Classe supprimée.");
+        } else {
+            System.out.println("Classe non trouvée.");
+        }
+    }
+
+    private static void afficherClasses() {
+        for (Classe classe : classes) {
+            System.out.println("Classe : " + classe.getNomClasse());
+            System.out.println("Formateur : " + classe.getFormateur().getNom());
+        }
+    }
+
     private static Classe trouverClasse(String nomClasse) {
         for (Classe classe : classes) {
             if (classe.getNomClasse().equals(nomClasse)) {
@@ -72,7 +94,8 @@ public class Class extends Personne {
             }
         }
         return null;
-}
+    }
+
 
     public static class Formateur extends Personne {
         private String nom;
